@@ -1,6 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  ActiveControl = StringGrid1
   Caption = 'Form1'
   ClientHeight = 539
   ClientWidth = 1000
@@ -18,7 +19,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 1000
-    Height = 33
+    Height = 32
     Align = alTop
     Alignment = taCenter
     Caption = 'Data Ekstra Kulikuler Siswa'
@@ -28,6 +29,7 @@ object Form1: TForm1
     Font.Name = 'Consolas'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitWidth = 405
   end
   object Label2: TLabel
     Left = 32
@@ -68,7 +70,86 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object LabeledEdit1: TLabeledEdit
+  object StringGrid1: TStringGrid
+    Left = 320
+    Top = 150
+    Width = 641
+    Height = 370
+    Color = 256544
+    ColCount = 6
+    RowCount = 1
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnSelectCell = GridSelectCell
+  end
+  object pencarian: TEdit
+    Left = 320
+    Top = 88
+    Width = 217
+    Height = 27
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    Text = 'Pencarian'
+    OnChange = pencarianChange
+    OnClick = pencarianClick
+  end
+  object cari: TButton
+    Left = 543
+    Top = 86
+    Width = 58
+    Height = 32
+    Caption = 'Cari'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Consolas'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = cariClick
+  end
+  object ubah: TButton
+    Left = 752
+    Top = 86
+    Width = 89
+    Height = 32
+    Caption = 'Ubah'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Consolas'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+    OnClick = ubahClick
+  end
+  object hapus: TButton
+    Left = 872
+    Top = 86
+    Width = 89
+    Height = 32
+    Caption = 'Hapus'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Consolas'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = hapusClick
+  end
+  object nisn: TLabeledEdit
     Left = 32
     Top = 88
     Width = 265
@@ -88,9 +169,9 @@ object Form1: TForm1
     Font.Name = 'Calibri'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 5
   end
-  object LabeledEdit2: TLabeledEdit
+  object nama: TLabeledEdit
     Left = 32
     Top = 150
     Width = 265
@@ -110,9 +191,9 @@ object Form1: TForm1
     Font.Name = 'Calibri'
     Font.Style = []
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 6
   end
-  object ComboBox1: TComboBox
+  object gender: TComboBox
     Left = 32
     Top = 220
     Width = 265
@@ -123,10 +204,24 @@ object Form1: TForm1
     Font.Name = 'Calibri'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
-    Text = 'ComboBox1'
+    TabOrder = 7
+    Text = 'Pilih'
   end
-  object Memo1: TMemo
+  object ekskul: TComboBox
+    Left = 32
+    Top = 292
+    Width = 265
+    Height = 27
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+    Text = 'Pilih'
+  end
+  object alamat: TMemo
     Left = 32
     Top = 362
     Width = 265
@@ -140,23 +235,9 @@ object Form1: TForm1
     HideSelection = False
     ParentFont = False
     ScrollBars = ssBoth
-    TabOrder = 3
+    TabOrder = 9
   end
-  object ComboBox2: TComboBox
-    Left = 32
-    Top = 292
-    Width = 265
-    Height = 27
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Calibri'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 4
-    Text = 'ComboBox1'
-  end
-  object Button1: TButton
+  object simpan: TButton
     Left = 40
     Top = 482
     Width = 89
@@ -168,85 +249,15 @@ object Form1: TForm1
     Font.Name = 'Consolas'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 10
+    OnClick = simpanClick
   end
-  object Button2: TButton
+  object ulang: TButton
     Left = 200
     Top = 482
     Width = 89
     Height = 32
-    Caption = 'Batal'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Consolas'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 6
-  end
-  object StringGrid1: TStringGrid
-    Left = 320
-    Top = 144
-    Width = 641
-    Height = 370
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Calibri'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 7
-  end
-  object Edit1: TEdit
-    Left = 320
-    Top = 88
-    Width = 217
-    Height = 27
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Calibri'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 8
-    Text = 'Pencarian'
-    OnClick = Edit1Click
-    OnExit = Edit1Exit
-  end
-  object Button3: TButton
-    Left = 543
-    Top = 86
-    Width = 58
-    Height = 32
-    Caption = 'Cari'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Consolas'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 9
-  end
-  object Button4: TButton
-    Left = 752
-    Top = 86
-    Width = 89
-    Height = 32
-    Caption = 'Ubah'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Consolas'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 10
-  end
-  object Button5: TButton
-    Left = 872
-    Top = 86
-    Width = 89
-    Height = 32
-    Caption = 'Hapus'
+    Caption = 'Ulang'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -254,5 +265,53 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 11
+    OnClick = ulangClick
+  end
+  object id: TEdit
+    Left = 32
+    Top = 38
+    Width = 57
+    Height = 21
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ReadOnly = True
+    ShowHint = False
+    TabOrder = 12
+    Text = 'ID'
+  end
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\rhayeksa\D' +
+      'esktop\delphi_projects\data-siswa\Database_ekskul_siswa.mdb;Pers' +
+      'ist Security Info=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 328
+    Top = 152
+  end
+  object ADOQuery1: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from siswa')
+    Left = 440
+    Top = 152
+  end
+  object ADOTable1: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'siswa'
+    Left = 392
+    Top = 152
   end
 end
