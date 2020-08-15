@@ -228,7 +228,7 @@ begin
     end;
   end;
 
-  Adotable1.Refresh;
+  ADOTable1.Refresh;
   StringGrid1.RowCount := ADOTable1.RecordCount + 1;
   with Adotable1 do
   begin

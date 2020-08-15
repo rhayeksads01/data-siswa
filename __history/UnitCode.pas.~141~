@@ -74,13 +74,36 @@ end;
 
 procedure TForm1.cariClick(Sender: TObject);
 begin
-  if ADOTable1.Locate(
-    'nama',
-    pencarian.Text,
-    [loCaseInsensitive,loPartialKey]) then
+//  if ADOTable1.Locate(
+//    'nama',
+//    pencarian.Text,
+//    [loCaseInsensitive,loPartialKey]) then
+//    begin
+//      StringGrid1.Row := ADOTable1.RecNo;
+//    end;
+  with ADOQuery1 do
+  begin
+    SQL.Text := 'select * from siswa where id = "' + pencarian.Text + '"';
+    ExecSQL;
+
+    StringGrid1.RowCount := ADOTable1.RecordCount + 1;
+    with ADOTable1 do
     begin
-      StringGrid1.Row := ADOTable1.RecNo;
+      StringGrid1.RowCount := RecordCount + 1;
+      First;
+      while not Eof do
+      begin
+        StringGrid1.Cells[0, RecNo] := FieldByName('ID').AsString;
+        StringGrid1.Cells[1, RecNo] := FieldByName('nisn').AsString;
+        StringGrid1.Cells[2, RecNo] := FieldByName('nama').AsString;
+        StringGrid1.Cells[3, RecNo] := FieldByName('gender').AsString;
+        StringGrid1.Cells[4, RecNo] := FieldByName('ekskul').AsString;
+        StringGrid1.Cells[5, RecNo] := FieldByName('alamat').AsString;
+        Next;
+      end;
+      StringGrid1.Row := RecNo;
     end;
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -117,7 +140,6 @@ begin
 
   pencarian.Font.Color := clGrayText;
 end;
-
 
 procedure TForm1.hapusClick(Sender: TObject);
 var NoRec: Integer;
@@ -204,7 +226,6 @@ begin
     end;
 end;
 
-
 procedure TForm1.ubahClick(Sender: TObject);
 begin
   try
@@ -219,7 +240,7 @@ begin
                     'alamat = "' + alamat.Text + '" ' +
                     'where ID = ' + id.Text;
       ExecSQL;
-      MessageDlg('Data berhasil diubah 😀)', mtInformation, [mbOK], 0);
+      MessageDlg('Data berhasil diubah 😀', mtInformation, [mbOK], 0);
       SQL.Text := 'select * from siswa';
       Open;
     end;
@@ -230,7 +251,7 @@ begin
     end;
   end;
 
-  Adotable1.Refresh;
+  ADOTable1.Refresh;
   StringGrid1.RowCount := ADOTable1.RecordCount + 1;
   with Adotable1 do
   begin

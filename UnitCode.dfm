@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   ActiveControl = StringGrid1
   Caption = 'Form1'
-  ClientHeight = 539
+  ClientHeight = 578
   ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -100,9 +100,10 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'Pencarian'
+    Text = 'pencarian'
     OnChange = pencarianChange
     OnClick = pencarianClick
+    OnEnter = cariClick
   end
   object cari: TButton
     Left = 543

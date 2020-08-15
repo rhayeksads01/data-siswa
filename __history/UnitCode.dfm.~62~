@@ -75,6 +75,7 @@ object Form1: TForm1
     Top = 150
     Width = 641
     Height = 370
+    Color = 256544
     ColCount = 6
     RowCount = 1
     FixedRows = 0
@@ -85,6 +86,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    OnSelectCell = GridSelectCell
   end
   object pencarian: TEdit
     Left = 320
@@ -101,6 +103,7 @@ object Form1: TForm1
     Text = 'Pencarian'
     OnChange = pencarianChange
     OnClick = pencarianClick
+    OnEnter = cariClick
   end
   object cari: TButton
     Left = 543
@@ -145,6 +148,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
+    OnClick = hapusClick
   end
   object nisn: TLabeledEdit
     Left = 32
@@ -267,7 +271,7 @@ object Form1: TForm1
   object id: TEdit
     Left = 32
     Top = 38
-    Width = 121
+    Width = 57
     Height = 21
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

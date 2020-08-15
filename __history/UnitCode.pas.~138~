@@ -74,13 +74,18 @@ end;
 
 procedure TForm1.cariClick(Sender: TObject);
 begin
-  if ADOTable1.Locate(
-    'nama',
-    pencarian.Text,
-    [loCaseInsensitive,loPartialKey]) then
-    begin
-      StringGrid1.Row := ADOTable1.RecNo;
-    end;
+//  if ADOTable1.Locate(
+//    'nama',
+//    pencarian.Text,
+//    [loCaseInsensitive,loPartialKey]) then
+//    begin
+//      StringGrid1.Row := ADOTable1.RecNo;
+//    end;
+  with ADOQuery1 do
+  begin
+    SQL.Text := '';
+    ExecSQL;
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -117,7 +122,6 @@ begin
 
   pencarian.Font.Color := clGrayText;
 end;
-
 
 procedure TForm1.hapusClick(Sender: TObject);
 var NoRec: Integer;
@@ -204,14 +208,13 @@ begin
     end;
 end;
 
-
 procedure TForm1.ubahClick(Sender: TObject);
 begin
   try
     with ADOQuery1 do
     begin
       Close;
-      SQL.Text := 'update siswa set' +
+      SQL.Text := 'update siswa set ' +
                     'nisn = "' + nisn.Text + '",' +
                     'nama = "' + nama.Text + '",' +
                     'gender = "' + gender.Text + '",' +
@@ -219,7 +222,7 @@ begin
                     'alamat = "' + alamat.Text + '" ' +
                     'where ID = ' + id.Text;
       ExecSQL;
-      MessageDlg('Data berhasil diubah 😀)', mtInformation, [mbOK], 0);
+      MessageDlg('Data berhasil diubah 😀', mtInformation, [mbOK], 0);
       SQL.Text := 'select * from siswa';
       Open;
     end;
@@ -232,7 +235,7 @@ begin
 
   ADOTable1.Refresh;
   StringGrid1.RowCount := ADOTable1.RecordCount + 1;
-  with ADOTable1 do
+  with Adotable1 do
   begin
     StringGrid1.RowCount := RecordCount + 1;
     First;
